@@ -45,7 +45,5 @@ jobs:
           git branch -M main
 
       - name: Push changes
-        env:
-          TOKEN: ${{ secrets.TOKEN }}
         run: |
           git push https://PG-Z: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@github.com/PG-Z/daily_action.git
