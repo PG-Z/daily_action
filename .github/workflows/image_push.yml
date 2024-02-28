@@ -3,7 +3,7 @@ name: Download Bing Wallpaper
 on:
 #  schedule:
 #    - cron: '0 15 16 * *'
-  # 推送时触发1
+  # 推送时触发4
   push:
     branches: [ main ]
 
