@@ -3,7 +3,7 @@ name: Download Bing Wallpaper
 on:
 #  schedule:
 #    - cron: '0 15 16 * *'
-  # 推送时触发4
+  # 推送时触发6
   push:
     branches: [ main ]
 
@@ -46,8 +46,10 @@ jobs:
           git branch -M main
 
       - name: Push changes
+        env:
+          TOKEN: ${{ secrets.TOKEN }}
         run: |
           git config --global user.name ${{ secrets.USERNAME }}
           git config --global user.email ${{ secrets.EMAIL }}
           git config --global pull.rebase false
-          git push https://${{ secrets.USERNAME }}:${{ secrets.TOKEN }}@github.com/${{ secrets.USERNAME }}/daily_action.git
+          git push https://${{ secrets.USERNAME }}:${TOKEN}@github.com/${{ secrets.USERNAME }}/daily_action.git
