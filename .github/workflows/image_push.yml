@@ -48,4 +48,5 @@ jobs:
         env:
           TOKEN: ${{ secrets.TOKEN }}
         run: |
-          git push https://${{ secrets.USERNAME }}:${TOKEN}@github.com/${{ secrets.USERNAME }}/daily_action.git
+#          git push https://${{ secrets.USERNAME }}:${TOKEN}@github.com/${{ secrets.USERNAME }}/daily_action.git
+          git push https://PG-Z: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@github.com/PG-Z/daily_action.git
