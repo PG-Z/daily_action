@@ -46,4 +46,4 @@ jobs:
 
       - name: Push changes
         run: |
-          git push https://PG-Z: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@github.com/PG-Z/daily_action.git
+          git push https://PG-Z:${{secrets.TOKEN2}}@github.com/PG-Z/daily_action.git
