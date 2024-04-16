@@ -40,4 +40,4 @@ jobs:
           author_email: ${{ secrets.EMAIL }}
           message: "Update wallpaper bing image"
         env:
-          GITHUB_TOKEN: ${{ secrets.PAT }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
