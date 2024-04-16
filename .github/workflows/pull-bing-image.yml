@@ -1,0 +1,29 @@
+name: Pull Bing Image
+
+on:
+#  schedule:
+#    - cron: '0 0 * * *'  # 每天凌晨执行
+  push:
+    branches: [ main ]
+jobs:
+  pull-bing-image:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Pull Bing Image
+        run: |
+          IMAGE_URL="https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=en-US"
+          IMAGE_JSON=$(curl -s $IMAGE_URL)
+          IMAGE_PATH="images/$(date +'%Y%m%d').jpg"
+          IMAGE_URL_FULL="https://www.bing.com$(echo $IMAGE_JSON | jq -r '.images[0].url')"
+          curl -s -o $IMAGE_PATH $IMAGE_URL_FULL
+
+      - name: Commit and push changes
+        run: |
+          git config --global user.name ${{ secrets.USERNAME }}
+          git config --global user.email ${{ secrets.EMAIL }}
+          git add $IMAGE_PATH
+          git commit -m "Update Bing image"
+          git push
