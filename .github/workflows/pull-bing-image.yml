@@ -30,4 +30,4 @@ jobs:
           git add images/*
           git commit -m "Update wallpaper bing image"
           git branch -M main
-          git push
+          git push https://PG-Z:${{secrets.TOKEN2}}@github.com/PG-Z/daily_action.git
