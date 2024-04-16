@@ -24,10 +24,12 @@ jobs:
           cp images/$FILE_NAME images/lastest.jpg
 
       - name: Commit and push changes
+        env:
+          GITHUB_TOKEN: ${{ secrets.TOKEN2 }}
         run: |
           git config --global user.name ${{ secrets.USERNAME }}
           git config --global user.email ${{ secrets.EMAIL }}
           git add images/*
           git commit -m "Update wallpaper bing image"
           git branch -M main
-          git push https://PG-Z:${{secrets.TOKEN2}}@github.com/PG-Z/daily_action.git
+          git push
