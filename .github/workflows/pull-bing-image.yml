@@ -14,11 +14,14 @@ jobs:
 
       - name: Pull Bing Image
         run: |
-          IMAGE_URL="https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=en-US"
-          IMAGE_JSON=$(curl -s $IMAGE_URL)
-          IMAGE_PATH="images/$(date +'%Y%m%d').jpg"
-          IMAGE_URL_FULL="https://www.bing.com$(echo $IMAGE_JSON | jq -r '.images[0].url')"
-          curl -s -o $IMAGE_PATH $IMAGE_URL_FULL
+          URL="https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=en-US"
+          IMAGE_PATH="$(curl -s $URL | jq -r '.images[0].url' | sed 's/^/https:\/\/www.bing.com/;s/1366x768.jpg$/1920x1080.jpg/')"
+          #FILE_NAME="$(echo $IMAGE_PATH | awk -F '/' '{print $NF}')"
+          FILE_NAME="$(date +"%Y%m%d").jpg"
+          mkdir -p images
+          curl -s $IMAGE_PATH -o "images/$FILE_NAME"
+          #复制文件
+          cp images/$FILE_NAME images/lastest.jpg
 
       - name: Commit and push changes
         run: |
